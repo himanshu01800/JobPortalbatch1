@@ -1,7 +1,4 @@
-package com.example.Jobportal.Model;
-
-import com.example.JobPortalbatch1.model.Job;
-import com.example.JobPortalbatch1.model.User;
+package com.example.JobPortalbatch1.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
