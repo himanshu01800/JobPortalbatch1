@@ -1,5 +1,5 @@
 package com.example.JobPortalbatch1.model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,21 +8,24 @@ import lombok.Setter;
 
 import java.util.Set;
 
-@Setter
+@Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "employer_profiles")
 public class EmployerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String description;
-    private String websiteUrl;
-    private String email;
+    private int id;
+    private String webSiteUrl;
     private String address;
-    private Set<Job> postedJob;
+    private String description;
+    private int established;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    @OneToMany(mappedBy = "employerProfile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Job> jobs;
 }
